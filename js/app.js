@@ -27,7 +27,9 @@ cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
  *   - 循环遍历每张卡片，创建其 HTML
  *   - 将每张卡的 HTML 添加到页面
  */
-
+shuffle(cards).forEach(function(card){
+  $(".deck").append($(card));
+});
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
