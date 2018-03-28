@@ -45,6 +45,10 @@ function shuffle(array) {
     return array;
 }
 
+function show() {
+  this.className = 'card open show';
+}
+
 /*
  * 设置一张卡片的事件监听器。 如果该卡片被点击：
  *  - 显示卡片的符号（将这个功能放在你从这个函数中调用的另一个函数中）
@@ -57,6 +61,6 @@ function shuffle(array) {
  */
  $(".deck").on("click","li",function(){
    //显示卡片
-
+   show.call(this);
    //检测
  });
