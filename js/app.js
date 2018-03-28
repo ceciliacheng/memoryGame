@@ -50,6 +50,21 @@ function show() {
   this.className = 'card open show';
 }
 
+function check() {
+  if (open.length == 2) {
+    if (open[0].firstChild.className == open[1].firstChild.className) {
+      open[0].className = "card match";
+      open[1].className = "card match";
+      open.length = 0;
+    } else {
+      setTimeout(function(){
+        open[0].className = "card";
+        open[1].className = "card";
+        open.length = 0;
+      },500);
+    }
+  }
+}
 /*
  * 设置一张卡片的事件监听器。 如果该卡片被点击：
  *  - 显示卡片的符号（将这个功能放在你从这个函数中调用的另一个函数中）
@@ -63,5 +78,6 @@ function show() {
  $(".deck").on("click","li",function(){
    //显示卡片
    show.call(this);
+   open.push(this)
    //检测
  });
