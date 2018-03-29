@@ -78,6 +78,7 @@ function check() {
  $(".deck").on("click","li",function(){
    //显示卡片
    show.call(this);
-   open.push(this)
+   open.push(this);
    //检测
+   check();
  });
