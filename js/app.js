@@ -18,7 +18,9 @@ var cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-bomb"></i></li>',
           '<li class="card"><i class="fa fa-bomb"></i></li>',
           '<li class="card"><i class="fa fa-diamond"></i></li>',
-          '<li class="card"><i class="fa fa-diamond"></i></li>',]
+          '<li class="card"><i class="fa fa-diamond"></i></li>',
+          '<li class="card">''<i class="fa fa-leaf"></i>'
+          '<li class="card">''<i class="fa fa-leaf"></i>']
 
 var open = []
 
@@ -65,7 +67,7 @@ function check() {
     }
   }
 
-  if($('.card.match').length == 16){
+  if($('.card.match').length == 18){
     alert('恭喜你，你通关了');
   }
 }
