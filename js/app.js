@@ -19,8 +19,8 @@ var cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-bomb"></i></li>',
           '<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-diamond"></i></li>',
-          '<li class="card">''<i class="fa fa-leaf"></i>'
-          '<li class="card">''<i class="fa fa-leaf"></i>']
+          '<li class="card"><i class="fa fa-leaf"></i></li>',
+          '<li class="card"><i class="fa fa-leaf"></i></li>']
 
 var open = []
 
@@ -63,7 +63,7 @@ function check() {
         open[0].className = "card";
         open[1].className = "card";
         open.length = 0;
-      },500);
+      },800);
     }
   }
 
