@@ -22,7 +22,12 @@ var cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-leaf"></i></li>',
           '<li class="card"><i class="fa fa-leaf"></i></li>']
 
-var open = []
+var open = [];
+var move = 0;
+var match = 0;
+var seconds = 0;
+var resart = false;
+var star = 3;
 
 /*
  * 显示页面上的卡片
@@ -72,7 +77,39 @@ function check() {
   }
 }
 
+//重启功能
+function initGame(){
 
+}
+
+function timer(){
+  let startTime = new Date().getTime();
+  timer = setInterval(function() {
+    let currenTime = new Date().getTime();
+    let timePlayed = currenTime - startTime;
+    let mins = Math.floor((timePlayed % (1000 * 60 * 60)) / (1000 * 60));
+    let secs = Math.floor((timePlayed % (1000 * 60)) / 1000);
+    timerValue = mins + " minutes " + secs + "seconds";
+    if (secs < 10) {
+                secs = "0" + secs;
+            }
+            if (mins < 10) {
+                mins = "0" + mins;
+            }
+
+            let lastCurrentTime = mins + ':' + secs;
+
+            // Update timer on game screen and modal
+            $(".timer").text(lastCurrentTime);
+  },500)
+}
+function restart(){
+
+}
+
+function ratingStar(){
+
+}
 /*
  * 设置一张卡片的事件监听器。 如果该卡片被点击：
  *  - 显示卡片的符号（将这个功能放在你从这个函数中调用的另一个函数中）
@@ -90,7 +127,6 @@ function check() {
    //检测
    check();
    //计时器
-   //重启按钮
    //星级评分
    //计数器
  });
