@@ -103,6 +103,7 @@ function timer(){
             $(".timer").text(lastCurrentTime);
   },500)
 }
+
 function restart(){
 
 }
@@ -127,6 +128,7 @@ function ratingStar(){
    //检测
    check();
    //计时器
+   timer();
    //星级评分
    //计数器
  });
