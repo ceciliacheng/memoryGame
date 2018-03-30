@@ -27,8 +27,9 @@ var move = 0;
 var match = 0;
 var seconds = 0;
 var resart = false;
-var star = 3;
-
+var star3 = 18;
+var star2 = 36;
+var star1 = 54;
 /*
  * 显示页面上的卡片
  *   - 使用下面提供的 "shuffle" 方法对数组中的卡片进行洗牌
@@ -82,6 +83,7 @@ function initGame(){
 
 }
 
+//计时器
 function timer(){
   let startTime = new Date().getTime();
   timer = setInterval(function() {
@@ -105,7 +107,13 @@ function timer(){
 }
 
 function restart(){
-
+  move = 0;
+  $('#deck').empty();
+  $('#stars').empty();
+  startGame = false;
+  clearInterval(timer);
+  $(".timer").text("00:00");
+  initGame();
 }
 
 function ratingStar(){
@@ -130,5 +138,9 @@ function ratingStar(){
    //计时器
    timer();
    //星级评分
+
    //计数器
+
+   //重启功能
+   restart()
  });
