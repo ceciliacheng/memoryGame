@@ -38,11 +38,10 @@ var star1 = 54;
  *   - 将每张卡的 HTML 添加到页面
  */
 
-function createCards(){
-  shuffle(cards).forEach(function(card){
-  $(".deck").append($(card));
-}
 
+shuffle(cards).forEach(function(card){
+  $(".deck").append($(card));
+});
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -84,17 +83,7 @@ function check() {
 
 //重启功能
 function initGame(){
-  moves = 0;
-  matched = 0;
-  $('#deck').empty();
-  $('#stars').empty();
-  startGame = false;
-  clearInterval(timer);
-  $(".timer").text("00:00");
-  createCards();
-  $('.card').click(toggleCard);
-  $('#moves').html("0 Moves");
-  addStars(3);
+  
 }
 
 //计时器
@@ -156,5 +145,4 @@ function ratingStar(){
    //计数器
 
    //重启功能
-   restart()
  });
