@@ -30,15 +30,19 @@ var resart = false;
 var star3 = 18;
 var star2 = 36;
 var star1 = 54;
+
 /*
  * 显示页面上的卡片
  *   - 使用下面提供的 "shuffle" 方法对数组中的卡片进行洗牌
  *   - 循环遍历每张卡片，创建其 HTML
  *   - 将每张卡的 HTML 添加到页面
  */
-shuffle(cards).forEach(function(card){
+
+function createCards(){
+  shuffle(cards).forEach(function(card){
   $(".deck").append($(card));
-});
+}
+
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -80,7 +84,17 @@ function check() {
 
 //重启功能
 function initGame(){
-
+  moves = 0;
+  matched = 0;
+  $('#deck').empty();
+  $('#stars').empty();
+  startGame = false;
+  clearInterval(timer);
+  $(".timer").text("00:00");
+  createCards();
+  $('.card').click(toggleCard);
+  $('#moves').html("0 Moves");
+  addStars(3);
 }
 
 //计时器
