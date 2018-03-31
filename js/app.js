@@ -83,7 +83,7 @@ function check() {
 
 //重启功能
 function initGame(){
-  
+  var renew = shuffle(card);
 }
 
 //计时器
@@ -145,4 +145,5 @@ function ratingStar(){
    //计数器
 
    //重启功能
+   initGame()
  });
