@@ -1,26 +1,15 @@
 /*
  * 创建一个包含所有卡片的数组
  */
-var cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
-          '<li class="card"><i class="fa fa-diamond"></i></li>',
-          '<li class="card"><i class="fa fa-paper-plane-o"></i></li>',
-          '<li class="card"><i class="fa fa-paper-plane-o"></i></li>',
-          '<li class="card"><i class="fa fa-anchor"></i></li>',
-          '<li class="card"><i class="fa fa-anchor"></i></li>',
-          '<li class="card"><i class="fa fa-bolt"></i></li>',
-          '<li class="card"><i class="fa fa-bolt"></i></li>',
-          '<li class="card"><i class="fa fa-cube"></i></li>',
-          '<li class="card"><i class="fa fa-cube"></i></li>',
-          '<li class="card"><i class="fa fa-left"></i></li>',
-          '<li class="card"><i class="fa fa-left"></i></li>',
-          '<li class="card"><i class="fa fa-bicycle"></i></li>',
-          '<li class="card"><i class="fa fa-bicycle"></i></li>',
-          '<li class="card"><i class="fa fa-bomb"></i></li>',
-          '<li class="card"><i class="fa fa-bomb"></i></li>',
-          '<li class="card"><i class="fa fa-diamond"></i></li>',
-          '<li class="card"><i class="fa fa-diamond"></i></li>',
-          '<li class="card"><i class="fa fa-leaf"></i></li>',
-          '<li class="card"><i class="fa fa-leaf"></i></li>']
+var cards = ["fa fa-diamond","fa fa-diamond",
+          "fa fa-paper-plane-o","fa fa-paper-plane-o",
+          "fa fa-anchor","fa fa-anchor",
+          "fa fa-bolt","fa fa-bolt",
+          "fa fa-cube","fa fa-cube"
+          "fa fa-left","fa fa-left",
+          "fa fa-bicycle","fa fa-bicycle",
+          "fa fa-bomb","fa fa-bomb",
+          "fa fa-leaf","fa fa-leaf",];
 
 var open = [];
 var move = 0;
@@ -42,6 +31,13 @@ var star1 = 54;
 shuffle(cards).forEach(function(card){
   $(".deck").append($(card));
 });
+
+//重启功能
+function initGame(){
+  var renew = shuffle(card);
+
+}
+
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -81,11 +77,6 @@ function check() {
   }
 }
 
-//重启功能
-function initGame(){
-  var renew = shuffle(card);
-}
-
 //计时器
 function timer(){
   let startTime = new Date().getTime();
@@ -107,16 +98,6 @@ function timer(){
             // Update timer on game screen and modal
             $(".timer").text(lastCurrentTime);
   },500)
-}
-
-function restart(){
-  move = 0;
-  $('#deck').empty();
-  $('#stars').empty();
-  startGame = false;
-  clearInterval(timer);
-  $(".timer").text("00:00");
-  initGame();
 }
 
 function ratingStar(){
