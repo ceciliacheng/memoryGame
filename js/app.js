@@ -3,18 +3,26 @@
  */
 var cards = ["fa fa-diamond","fa fa-diamond",
           "fa fa-paper-plane-o","fa fa-paper-plane-o",
-          "fa fa-anchor","fa fa-anchor",
-          "fa fa-bolt","fa fa-bolt",
-          "fa fa-cube","fa fa-cube"
-          "fa fa-left","fa fa-left",
-          "fa fa-bicycle","fa fa-bicycle",
-          "fa fa-bomb","fa fa-bomb",
-          "fa fa-leaf","fa fa-leaf",];
+var cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
+          '<li class="card"><i class="fa fa-diamond"></i></li>',
+          '<li class="card"><i class="fa fa-paper-plane-o"></i></li>',
+          '<li class="card"><i class="fa fa-paper-plane-o"></i></li>',
+          '<li class="card"><i class="fa fa-anchor"></i></li>',
+          '<li class="card"><i class="fa fa-anchor"></i></li>',
+          '<li class="card"><i class="fa fa-bolt"></i></li>',
+          '<li class="card"><i class="fa fa-bolt"></i></li>',
+          '<li class="card"><i class="fa fa-cube"></i></li>',
+          '<li class="card"><i class="fa fa-cube"></i></li>',
+          '<li class="card"><i class="fa fa-left"></i></li>',
+          '<li class="card"><i class="fa fa-left"></i></li>',
+          '<li class="card"><i class="fa fa-bicycle"></i></li>',
+          '<li class="card"><i class="fa fa-bicycle"></i></li>',
+          '<li class="card"><i class="fa fa-bomb"></i></li>',
+          '<li class="card"><i class="fa fa-bomb"></i></li>',
+          '<li class="card"><i class="fa fa-diamond"></i></li>',
+          '<li class="card"><i class="fa fa-diamond"></i></li>'];
 
 var open = [];
-var move = 0;
-var match = 0;
-var seconds = 0;
 var resart = false;
 var star3 = 18;
 var star2 = 36;
@@ -32,10 +40,28 @@ shuffle(cards).forEach(function(card){
   $(".deck").append($(card));
 });
 
-//重启功能
+//重启整个画面
 function initGame(){
-  var renew = shuffle(card);
+  var renew = shuffle(cards);
+  $desk.empty();
+  match = 0;
+  moves = 0;
+  $('.move').text('0');
+  $('.fa-star').removeClass('fa-star-o').addClass('fa-star');
+  show.call(this);
+  open.push(this);
+  addCardListener();
+  second = 0;
+  resetTimer(currenTimer)
+  $(.timer).text('$second')
 
+}
+
+//重启时间
+function resetTimer(){
+  if(timer) {
+    clearInterval(timer);
+    }
 }
 
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
