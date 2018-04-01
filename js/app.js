@@ -1,9 +1,7 @@
 /*
  * 创建一个包含所有卡片的数组
  */
-var cards = ["fa fa-diamond","fa fa-diamond",
-          "fa fa-paper-plane-o","fa fa-paper-plane-o",
-var cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
+const cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-paper-plane-o"></i></li>',
           '<li class="card"><i class="fa fa-paper-plane-o"></i></li>',
@@ -22,11 +20,11 @@ var cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-diamond"></i></li>'];
 
-var open = [];
-var resart = false;
-var star3 = 18;
-var star2 = 36;
-var star1 = 54;
+let open = [],
+  resart = false,
+  star3 = 18,
+  star2 = 36,
+  star1 = 54;
 
 /*
  * 显示页面上的卡片
