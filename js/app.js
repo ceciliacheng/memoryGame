@@ -11,14 +11,12 @@ const cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-bolt"></i></li>',
           '<li class="card"><i class="fa fa-cube"></i></li>',
           '<li class="card"><i class="fa fa-cube"></i></li>',
-          '<li class="card"><i class="fa fa-left"></i></li>',
-          '<li class="card"><i class="fa fa-left"></i></li>',
+          '<li class="card"><i class="fa fa-leaf"></i></li>',
+          '<li class="card"><i class="fa fa-leaf"></i></li>',
           '<li class="card"><i class="fa fa-bicycle"></i></li>',
           '<li class="card"><i class="fa fa-bicycle"></i></li>',
           '<li class="card"><i class="fa fa-bomb"></i></li>',
-          '<li class="card"><i class="fa fa-bomb"></i></li>',
-          '<li class="card"><i class="fa fa-diamond"></i></li>',
-          '<li class="card"><i class="fa fa-diamond"></i></li>'];
+          '<li class="card"><i class="fa fa-bomb"></i></li>'];
 
 let open = [],
   resart = false,
@@ -33,26 +31,22 @@ let open = [],
  *   - 将每张卡的 HTML 添加到页面
  */
 
-
-shuffle(cards).forEach(function(card){
-  $(".deck").append($(card));
-});
+initGame();
 
 //重启整个画面
 function initGame(){
   var renew = shuffle(cards);
-  $desk.empty();
+  $(".deck").empty();
   match = 0;
   moves = 0;
   $('.move').text('0');
   $('.fa-star').removeClass('fa-star-o').addClass('fa-star');
-  show.call(this);
-  open.push(this);
-  addCardListener();
   second = 0;
-  resetTimer(currenTimer)
-  $(.timer).text('$second')
-
+  resetTimer()
+  $('.timer').text('$second')
+  shuffle(cards).forEach(function(card){
+    $(".deck").append($(card));
+  });
 }
 
 //重启时间
@@ -82,6 +76,7 @@ function show() {
 }
 
 function check() {
+  console.log(open)
   if (open.length == 2) {
     if (open[0].firstChild.className == open[1].firstChild.className) {
       open[0].className = "card match";
@@ -143,12 +138,15 @@ function ratingStar(){
    open.push(this);
    //检测
    check();
-   //计时器
-   timer();
+
    //星级评分
 
-   //计数器
-
-   //重启功能
-   initGame()
  });
+
+ $(".restart").on("click",function(){
+   console.log('hello');
+   initGame();
+
+ });
+
+ timer();
