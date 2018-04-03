@@ -76,11 +76,10 @@ function show() {
 }
 
 function check() {
-  console.log(open)
   if (open.length == 2) {
-    if (open[0].firstChild.className == open[1].firstChild.className) {
-      open[0].className = "card match";
-      open[1].className = "card match";
+    if (open[0].firstChild.className === open[1].firstChild.className) {
+      $(".deck").open[0].className = "card match";
+      $(".deck").open[1].className = "card match";
       open.length = 0;
     } else {
       setTimeout(function(){
