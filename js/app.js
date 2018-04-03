@@ -20,9 +20,7 @@ const cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
 
 let open = [],
   resart = false,
-  star3 = 18,
-  star2 = 36,
-  star1 = 54;
+
 
 /*
  * 显示页面上的卡片
@@ -118,8 +116,19 @@ function timer(){
   },500)
 }
 
-function ratingStar(){
+let   star3 = 18,star2 = 36,star1 = 54;
 
+function Star(move){
+  let stars = 3;
+  if (moves > star3 && moves < star2){
+      $(.stars).eq(2).removeClass('fa-star-o').addClass('fa-star');
+      star = 2;
+  } else if (moves > star2 && moves < star1) {
+    $(.stars).eq(1).removeClass('fa-star-o').addClass('fa-star');
+    star = 1;
+  } else if (moves > star1) {
+    $(.stars).eq(0).removeClass('fa-star-o').addClass('fa-star');
+  }
 }
 /*
  * 设置一张卡片的事件监听器。 如果该卡片被点击：
@@ -139,11 +148,10 @@ function ratingStar(){
    check();
 
    //星级评分
-
+   Star();
  });
 
  $(".restart").on("click",function(){
-   console.log('hello');
    initGame();
 
  });
