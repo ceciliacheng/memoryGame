@@ -43,7 +43,7 @@ function initGame(){
   $('.fa-star').removeClass('fa-star-o').addClass('fa-star');
   second = 0;
   resetTimer()
-  $('.timer').text('$second')
+  $('.timer').text('0')
   shuffle(cards).forEach(function(card){
     $(".deck").append($(card));
   });
@@ -78,15 +78,15 @@ function show() {
 function check() {
   if (open.length == 2) {
     if (open[0].firstChild.className === open[1].firstChild.className) {
-      $(".deck").open[0].className = "card match";
-      $(".deck").open[1].className = "card match";
+      open[0].className = "card match";
+      open[1].className = "card match";
       open.length = 0;
     } else {
       setTimeout(function(){
         open[0].className = "card";
         open[1].className = "card";
         open.length = 0;
-      },800);
+      },500);
     }
   }
 
