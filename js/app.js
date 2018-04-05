@@ -65,9 +65,14 @@ function show() {
   this.className = 'card open show';
 }
 
-function check() {
+function check(target) {
+
+  if(target.className.includes('open show')){
+    return;
+  }
+
   if (open.length == 2) {
-    if (open[0].firstChild.className === open[1].firstChild.className) {
+    if (open[0].firstChild.className == open[1].firstChild.className) {
       open[0].className = "card match";
       open[1].className = "card match";
       open.length = 0;
@@ -113,13 +118,13 @@ let   star3 = 18,star2 = 36,star1 = 54;
 function Star(move){
   let stars = 3;
   if (moves > star3 && moves < star2){
-      $('.stars').eq(2).removeClass('fa-star-o').addClass('fa-star');
+      $('.stars i').eq(2).removeClass('fa-star').addClass('fa-star-o');
       star = 2;
   } else if (moves > star2 && moves < star1) {
-    $('.stars').eq(1).removeClass('fa-star-o').addClass('fa-star');
+    $('.stars i').eq(1).removeClass('fa-star').addClass('fa-star-o');
     star = 1;
   } else if (moves > star1) {
-    $('.stars').eq(0).removeClass('fa-star-o').addClass('fa-star');
+    $('.stars i').eq(0).removeClass('fa-star').addClass('fa-star-o');
   }
 }
 /*
@@ -132,12 +137,12 @@ function Star(move){
  *    + 增加移动计数器并将其显示在页面上（将这个功能放在你从这个函数中调用的另一个函数中）
  *    + 如果所有卡都匹配，则显示带有最终分数的消息（将这个功能放在你从这个函数中调用的另一个函数中）
  */
- $(".deck").on("click","li",function(){
+ $(".deck").on("click","li",function(event){
    //显示卡片
    show.call(this);
    open.push(this);
    //检测
-   check();
+   check(event.target);
 
    //星级评分
    Star();
