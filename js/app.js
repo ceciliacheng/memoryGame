@@ -18,8 +18,7 @@ const cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-bomb"></i></li>',
           '<li class="card"><i class="fa fa-bomb"></i></li>'];
 
-let open = [],
-  resart = false;
+let open = [];
 
 initGame();
 
@@ -67,14 +66,13 @@ function show() {
 
 function check(target) {
 
-  if(target.className.includes('open show')){
-    return;
-  }
-
   if (open.length == 2) {
     if (open[0].firstChild.className == open[1].firstChild.className) {
       open[0].className = "card match";
       open[1].className = "card match";
+      if(target.className.includes('open show')){
+        return;
+      }
       open.length = 0;
     } else {
       setTimeout(function(){
@@ -113,30 +111,23 @@ function timer(){
   },500)
 }
 
-let   star3 = 18,star2 = 36,star1 = 54;
+let   star3 = 8,star2 = 18,star1 = 36;
 
 function Star(move){
   let stars = 3;
   if (moves > star3 && moves < star2){
       $('.stars i').eq(2).removeClass('fa-star').addClass('fa-star-o');
-      star = 2;
+      stars = 2;
   } else if (moves > star2 && moves < star1) {
     $('.stars i').eq(1).removeClass('fa-star').addClass('fa-star-o');
-    star = 1;
+    stars = 1;
   } else if (moves > star1) {
     $('.stars i').eq(0).removeClass('fa-star').addClass('fa-star-o');
   }
+  return { score : stars };
 }
-/*
- * 设置一张卡片的事件监听器。 如果该卡片被点击：
- *  - 显示卡片的符号（将这个功能放在你从这个函数中调用的另一个函数中）
- *  - 将卡片添加到状态为 “open” 的 *数组* 中（将这个功能放在你从这个函数中调用的另一个函数中）
- *  - 如果数组中已有另一张卡，请检查两张卡片是否匹配
- *    + 如果卡片匹配，将卡片锁定为 "open" 状态（将这个功能放在你从这个函数中调用的另一个函数中）
- *    + 如果卡片不匹配，请将卡片从数组中移除并隐藏卡片的符号（将这个功能放在你从这个函数中调用的另一个函数中）
- *    + 增加移动计数器并将其显示在页面上（将这个功能放在你从这个函数中调用的另一个函数中）
- *    + 如果所有卡都匹配，则显示带有最终分数的消息（将这个功能放在你从这个函数中调用的另一个函数中）
- */
+
+
  $(".deck").on("click","li",function(event){
    //显示卡片
    show.call(this);
