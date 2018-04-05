@@ -43,7 +43,7 @@ function initGame(){
   resetTimer()
   $('.timer').text('0')
   shuffle(cards).forEach(function(card){
-    $(".deck").append($(card));
+    $(".deck").append($(".card"));
   });
 }
 
