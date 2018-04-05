@@ -19,15 +19,7 @@ const cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
           '<li class="card"><i class="fa fa-bomb"></i></li>'];
 
 let open = [],
-  resart = false,
-
-
-/*
- * 显示页面上的卡片
- *   - 使用下面提供的 "shuffle" 方法对数组中的卡片进行洗牌
- *   - 循环遍历每张卡片，创建其 HTML
- *   - 将每张卡的 HTML 添加到页面
- */
+  resart = false;
 
 initGame();
 
@@ -43,7 +35,7 @@ function initGame(){
   resetTimer()
   $('.timer').text('0')
   shuffle(cards).forEach(function(card){
-    $(".deck").append($(".card"));
+    $(".deck").append($(card));
   });
 }
 
@@ -121,13 +113,13 @@ let   star3 = 18,star2 = 36,star1 = 54;
 function Star(move){
   let stars = 3;
   if (moves > star3 && moves < star2){
-      $(.stars).eq(2).removeClass('fa-star-o').addClass('fa-star');
+      $('.stars').eq(2).removeClass('fa-star-o').addClass('fa-star');
       star = 2;
   } else if (moves > star2 && moves < star1) {
-    $(.stars).eq(1).removeClass('fa-star-o').addClass('fa-star');
+    $('.stars').eq(1).removeClass('fa-star-o').addClass('fa-star');
     star = 1;
   } else if (moves > star1) {
-    $(.stars).eq(0).removeClass('fa-star-o').addClass('fa-star');
+    $('.stars').eq(0).removeClass('fa-star-o').addClass('fa-star');
   }
 }
 /*
