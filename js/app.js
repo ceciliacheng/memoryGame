@@ -20,29 +20,27 @@ const cards = ['<li class="card"><i class="fa fa-diamond"></i></li>',
 
 let open = [];
 
-initGame();
+
 
 //重启整个画面
 function initGame(){
-  var renew = shuffle(cards);
   $(".deck").empty();
   match = 0;
   moves = 0;
   $('.move').text('0');
   $('.fa-star').removeClass('fa-star-o').addClass('fa-star');
-  second = 0;
-  resetTimer()
-  $('.timer').text('0')
-  shuffle(cards).forEach(function(card){
-    $(".deck").append($(card));
-  });
+  resetTimer();
+  $('.timer').text('0');
+  creatCards();
 }
 
-//重启时间
-function resetTimer(){
-  if(timer) {
-    clearInterval(timer);
-    }
+function creatCards(){
+ cardList = shuffle(cards);
+ cardList.forEach(addCard);
+}
+
+function addCard(card){
+  $(".deck").append($(card));
 }
 
 // 洗牌函数来自于 http://stackoverflow.com/a/2450976
@@ -111,8 +109,6 @@ function timer(){
   },500)
 }
 
-let   star3 = 8,star2 = 18,star1 = 36;
-
 function Star(move){
   let stars = 3;
   if (moves > star3 && moves < star2){
@@ -144,4 +140,11 @@ function Star(move){
 
  });
 
- timer();
+ //重启时间
+ function resetTimer(){
+   if(timer) {
+     clearInterval(timer);
+     }
+ }
+
+ initGame();
