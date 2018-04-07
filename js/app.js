@@ -26,9 +26,9 @@ $(document).ready(function() {
     firstCard = "",
     secondCard = "",
     timerValue,
-    timer,//记录时间，但如果timer()没区分大小写，而这里又没声明，会出现error
+    timer, //记录时间，但如果timer()没区分大小写，而这里又没声明，会出现error
     stars = 3;
-    startGame = false;
+  startGame = false;
 
   $("#reset-button").click(resetGame);
 
@@ -84,7 +84,7 @@ $(document).ready(function() {
   function show() {
     if (startGame == false) {
       startGame = true;
-      Timer();//如果这里是小写，重启游戏后会出现error
+      Timer(); //如果这里是小写，重启游戏后会出现error
     }
 
     if (opencards.length === 0) {
@@ -209,6 +209,29 @@ $(document).ready(function() {
     $(".timer").text("00:00");
     $(".moves").text("0");
     initGame();
+    setTimeout(alertRestart, 100);
+  }
+
+  function alertRestart() {
+    swal({
+      title: "确定删除吗？",
+      text: "你将无法恢复它！",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "确定删除！"
+    }).then(function(isConfirm) {
+        if(isConfirm){
+          initGame();
+          swal("删除！", "你的文件已经被删除。", "success");
+        }else {
+          swal(
+            "已取消！",
+            "请继续游戏！"
+          );
+        }
+    });
   }
 
   initGame();
