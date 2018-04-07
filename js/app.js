@@ -18,22 +18,34 @@ const cards = [
 ];
 
 let opencards = [],
+  moves = 0,
+  match = 0,
   firstCard = "",
-  secondCard = "";
+  secondCard = "",
+  timerValue,
+  stars = 3;
+startGame = false;
+
+$(".fa fa-repeat").click(resetGame);
 
 //重启整个画面
 function initGame() {
   $(".deck").empty();
+  $(".timer").text("00:00");
+  $(".move").html("0 Moves");
+  $(".stars").empty();
   match = 0;
   moves = 0;
-  $(".move").text("0");
-  $(".fa-star")
-    .removeClass("fa-star-o")
-    .addClass("fa-star");
-  resetTimer();
-  $(".timer").text("0");
   creatCards();
+  clearInterval(timer);
   $(".card").click(show);
+  addStars();
+}
+
+function addStars() {
+  for (var i = 0; i < 3; i++) {
+    $(".star").append('<li class="card"><i class="fa fa-star"></i></li>');
+  }
 }
 
 function creatCards() {
@@ -66,20 +78,25 @@ function enableClick() {
 }
 
 function show() {
+  if (startGame == false) {
+    startGame = true;
+    timer();
+  }
+
   if (opencards.length === 0) {
     $(this).toggleClass("show open");
     opencards.push($(this));
     firstCard = this.firstChild.className;
     disableClick();
   } else if (opencards.length === 1) {
-    //updateMoves();
     updateMoves();
     $(this).toggleClass("show open");
-    opencards = this.firstChild.className;
+    opencards.push($(this));
+    secondCard = this.firstChild.className;
     setTimeout(matchCards, 500);
   }
 
-  console.log(this);
+  //console.log(this);
   console.log(opencards);
 }
 
@@ -91,24 +108,29 @@ function disableClick() {
 
 function matchCards() {
   if (firstCard === secondCard) {
-    opencards[0].addClass("match");
-    opencards[1].addClass("match");
-    //removeOpenCards();
-    //setTimeout(checkResult,500);
+    console.log("matchCards");
+    //opencards[0].addClass("match");
+    //opencards[1].addClass("match");
+    removeOpenCards();
+    setTimeout(checkResult, 500);
   } else {
-    opencards[0].toggleClass("show open");
-    opencards[1].toggleClass("show open");
+    //opencards[0].toggleClass("show open");
+    //opencards[1].toggleClass("show open");
     enableClick();
-    //removeOpenCards();
+    removeOpenCards();
   }
 }
 
-function checkResult() {}
-//function check() {
-//$(this).toggleClass("show card");
-//opencards.push($(this));
-//console.log(opencards)
-//}
+function checkResult() {
+  match += 1;
+  if (match == 8) {
+    timerValue = document.getElementsByClassName("timer").innerHTML;
+  }
+}
+
+function removeOpenCards() {
+  opencards = [];
+}
 
 //计时器
 function timer() {
@@ -133,23 +155,69 @@ function timer() {
   }, 500);
 }
 
-function updateMoves() {}
+function updateMoves() {
+  moves += 1;
+  $(".moves").html(`${moves}Moves`);
+  if (moves == 18) {
+    rate();
+  } else if (moves == 36) {
+    rate();
+  } else if (moves == 48) {
+    rate();
+  }
+}
 
-$(".deck").on("click", "li", function() {
-  //显示卡片
-  //show.call(this);
-  //opencards.push(this);
-});
-
-$(".restart").on("click", function() {
-  initGame();
-});
+function rate() {
+  $(".stars li")
+    .first()
+    .remove();
+  stars -= 1;
+  $(".stars").append();
+}
 
 //重启时间
 function resetTimer() {
   if (timer) {
     clearInterval(timer);
   }
+}
+
+function showWinBox() {
+  clearInterval(timer);
+  swal({
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    animation: true,
+    customClass: "animated tade",
+    title: "Congratulations! You Won!",
+    text:
+      "With " +
+      moves +
+      " Moves and " +
+      stars +
+      " Stars.\n wooo! " +
+      " Ellapsed Time" +
+      timerValue,
+    type: "success",
+    confirmButtonColor: "#d33",
+    confirmButtonText: "Play again!"
+  }).then(function(isConfirm) {
+    if (isConfirm) {
+      clearInterval(timer);
+      initGame();
+    }
+  });
+}
+
+function resetGame() {
+  moves = 0;
+  match = 0;
+  $(".deck").empty();
+  $(".stars").empty();
+  startGame = false;
+  clearInterval(timer);
+  $(".timer").text("00:00");
+  initGame();
 }
 
 initGame();
