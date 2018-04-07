@@ -1,3 +1,5 @@
+//参考仓库 => https://github.com/Ayah2022/udacity
+
 $(document).ready(function() {
   const cards = [
     '<li class="card"><i class="fa fa-diamond"></i></li>',
@@ -24,7 +26,7 @@ $(document).ready(function() {
     firstCard = "",
     secondCard = "",
     timerValue,
-    timer,
+    timer,//记录时间，但如果timer()没区分大小写，而这里又没声明，会出现error
     stars = 3;
     startGame = false;
 
@@ -82,7 +84,7 @@ $(document).ready(function() {
   function show() {
     if (startGame == false) {
       startGame = true;
-      Timer();
+      Timer();//如果这里是小写，重启游戏后会出现error
     }
 
     if (opencards.length === 0) {
