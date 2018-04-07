@@ -122,6 +122,7 @@ function checkResult() {
   match += 1;
   if (match == 8) {
     timerValue = document.getElementsByClassName("timer").innerHTML;
+    setTimeout(showWinBox,800);
   }
 }
 
@@ -165,11 +166,9 @@ function updateMoves() {
 }
 
 function rate() {
-  $(".stars li")
-    .first()
-    .remove();
+  $(".stars li").first().remove();
   stars -= 1;
-  $(".stars").append();
+  $(".stars").append('<li><i class="fa fa-star-o"></i></li>');
 }
 
 //重启时间
