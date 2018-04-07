@@ -24,7 +24,7 @@ let opencards = [],
   secondCard = "",
   timerValue,
   stars = 3;
-startGame = false;
+  startGame = false;
 
 $(".fa fa-repeat").click(resetGame);
 
@@ -44,7 +44,7 @@ function initGame() {
 
 function addStars() {
   for (var i = 0; i < 3; i++) {
-    $(".star").append('<li class="card"><i class="fa fa-star"></i></li>');
+    $(".stars").append('<li><i class="fa fa-star"></i></li>');
   }
 }
 
@@ -95,9 +95,6 @@ function show() {
     secondCard = this.firstChild.className;
     setTimeout(matchCards, 500);
   }
-
-  //console.log(this);
-  console.log(opencards);
 }
 
 function disableClick() {
@@ -109,13 +106,13 @@ function disableClick() {
 function matchCards() {
   if (firstCard === secondCard) {
     console.log("matchCards");
-    //opencards[0].addClass("match");
-    //opencards[1].addClass("match");
+    opencards[0].addClass("match");
+    opencards[1].addClass("match");
     removeOpenCards();
     setTimeout(checkResult, 500);
   } else {
-    //opencards[0].toggleClass("show open");
-    //opencards[1].toggleClass("show open");
+    opencards[0].toggleClass("show open");
+    opencards[1].toggleClass("show open");
     enableClick();
     removeOpenCards();
   }
