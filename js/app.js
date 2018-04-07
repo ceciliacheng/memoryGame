@@ -27,6 +27,7 @@ function initGame(){
   resetTimer();
   $('.timer').text('0');
   creatCards();
+  $(".card").click(show);
 }
 
 function creatCards(){
@@ -52,24 +53,51 @@ function shuffle(array) {
     return array;
 }
 
+function enableClick(){
+  opencards[0].click(show);
+}
+
 function show() {
   if (opencards.length === 0) {
     $(this).toggleClass('show open');
     opencards.push($(this));
     firstCard = this.firstChild.className;
-    //disableClick;
-  } else if (opencards.length === 0) {
+    disableClick();
+  } else if (opencards.length === 1) {
     //updateMoves();
     updateMoves();
     $(this).toggleClass('show open');
     opencards = this.firstChild.className;
-    //setTimeout();
+    //setTimeout(matchCards,500);
   }
 
   console.log(this)
   console.log(opencards)
 }
 
+function disableClick(){
+  opencards.forEach(function(card){
+    card.off('click');
+  });
+}
+
+function matchCards(){
+  if (firstCard === secondCard) {
+    opencards[0].addClass("match");
+    opencards[1].addClass("match");
+    //removeOpenCards();
+    //setTimeout(checkResult,500);
+  }else{
+    opencards[0].toggleClass("show open");
+    opencards[1].toggleClass("show open");
+    enableClick();
+    //removeOpenCards();
+  }
+}
+
+function checkResult(){
+
+}
 //function check() {
   //$(this).toggleClass("show card");
   //opencards.push($(this));
@@ -105,8 +133,8 @@ function updateMoves(){
 
  $(".deck").on("click","li",function(){
    //显示卡片
-   show.call(this);
-   //open.push(this);
+   //show.call(this);
+   //opencards.push(this);
  });
 
  $(".restart").on("click",function(){
