@@ -36,7 +36,7 @@ $(document).ready(function() {
   function initGame() {
     $(".deck").empty();
     $(".timer").text("00:00");
-    $(".move").text("0");
+    $(".moves").html("0");
     $(".stars").empty();
     match = 0;
     moves = 0;
@@ -176,7 +176,7 @@ $(document).ready(function() {
   }
 
   function alertWin() {
-    clearInterval(timer);
+      clearInterval(timer);
     swal({
       allowEscapeKey: false,
       allowOutsideClick: false,
@@ -195,9 +195,7 @@ $(document).ready(function() {
       confirmButtonText: "重玩"
     }).then(function(isConfirm) {
       if (isConfirm) {
-        clearInterval(timer);
         initGame();
-        debugger;
       }
     })
   }
