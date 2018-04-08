@@ -36,7 +36,7 @@ $(document).ready(function() {
   function initGame() {
     $(".deck").empty();
     $(".timer").text("00:00");
-    $(".move").html("0");
+    $(".move").text("0");
     $(".stars").empty();
     match = 0;
     moves = 0;
@@ -160,11 +160,9 @@ $(document).ready(function() {
   function updateMoves() {
     moves += 1;
     $(".moves").html(`${moves}`);
-    if (moves == 18) {
+    if (moves == 10) {
       rate();
-    } else if (moves == 36) {
-      rate();
-    } else if (moves == 48) {
+    } else if (moves == 18) {
       rate();
     }
   }
@@ -180,6 +178,9 @@ $(document).ready(function() {
   function alertWin() {
     clearInterval(timer);
     swal({
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      animation: true,
       title: "很棒，您赢了!",
       text:
         "你一共走了 " +
@@ -189,14 +190,16 @@ $(document).ready(function() {
         " 颗星星\n 厉害! " +
         " 只用了" +
         timerValue,
+      type: "success",
       confirmButtonColor: "#d33",
       confirmButtonText: "重玩"
     }).then(function(isConfirm) {
       if (isConfirm) {
         clearInterval(timer);
         initGame();
+        debugger;
       }
-    });
+    })
   }
 
   function resetGame() {
@@ -222,15 +225,12 @@ $(document).ready(function() {
       cancelButtonColor: "#d33",
       confirmButtonText: "确定删除！"
     }).then(function(isConfirm) {
-        if(isConfirm){
-          initGame();
-          swal("删除！", "你的文件已经被删除。", "success");
-        }else {
-          swal(
-            "已取消！",
-            "请继续游戏！"
-          );
-        }
+      if (isConfirm) {
+        initGame();
+        swal("删除！", "你的文件已经被删除。", "success");
+      } else {
+        swal("已取消！", "请继续游戏！");
+      }
     });
   }
 
